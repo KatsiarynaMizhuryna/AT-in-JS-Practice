@@ -46,16 +46,26 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 2,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local browser web tests
-        browserName: browserName // or "firefox", "microsoftedge", "safari"
-    }],
+    capabilities: [
+        {
+          browserName: browserName,  // Use the browserName from the command line or default to 'chrome'
+          'goog:chromeOptions': browserName === 'chrome' ? {
+            args: ['--headless', '--disable-gpu', '--window-size=1920x1080']
+          } : {},
+          'moz:firefoxOptions': browserName === 'firefox' ? {
+            args: ['--headless']
+          } : {},
+          'ms:edgeOptions': browserName === 'microsoftedge' ? {
+            args: ['--headless']
+          } : {},
+        }
+      ],
 
     //
     // ===================

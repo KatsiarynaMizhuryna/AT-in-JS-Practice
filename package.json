@@ -15,6 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "test:chrome": "wdio run wdio.conf.js chrome",
+    "test:firefox": "wdio run wdio.conf.js firefox",
+    "test:edge": "wdio run wdio.conf.js microsoftedge",
     "wdio": "wdio run wdio.conf.js"
   },
   "devDependencies": {
