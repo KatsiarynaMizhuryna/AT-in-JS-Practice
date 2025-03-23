@@ -8,6 +8,9 @@ exports.config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
+    mochaOpts: {
+        retries: 2, 
+      },
     //
     // ==================
     // Specify Test Files
