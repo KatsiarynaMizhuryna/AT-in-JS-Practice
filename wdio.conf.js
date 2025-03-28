@@ -59,7 +59,7 @@ exports.config = {
     //
     capabilities: [
         {
-          browserName: browserName,  // Use the browserName from the command line or default to 'chrome'
+          browserName: browserName,
           'goog:chromeOptions': browserName === 'chrome' ? {
             args: ['--headless', '--disable-gpu', '--window-size=1920x1080']
           } : {},
