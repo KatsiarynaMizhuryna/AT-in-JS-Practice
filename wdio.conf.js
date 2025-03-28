@@ -10,6 +10,8 @@ exports.config = {
     runner: 'local',
     mochaOpts: {
         retries: 2, 
+        timeout: 60000,
+        ui: 'bdd'
       },
     //
     // ==================
@@ -27,7 +29,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './src/features/app.feature'
+        './src/specs/**/*.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -125,7 +127,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'cucumber',
+    framework: 'mocha',
     
     //
     // The number of times to retry the entire specfile when it fails as a whole
