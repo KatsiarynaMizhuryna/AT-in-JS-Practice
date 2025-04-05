@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 const { Given, When, Then } = require("@wdio/cucumber-framework");
 const chai = require("chai");
 const expect = chai.expect;
+=======
+const { Given, When, Then } = require('@wdio/cucumber-framework');
+const chai = require('chai');
+const expect = chai.expect; 
+const assert = chai.assert;
+chai.should();
+>>>>>>> af8484d (Chai integration)
 
 const HomePage = require("../pageobjects/home.page");
 const LoginPage = require("../pageobjects/login.page");
@@ -9,9 +17,16 @@ Given("I am on the homepage", async function () {
   await HomePage.open();
 });
 
+<<<<<<< HEAD
 Then("I should see the header", async function () {
   const header = await HomePage.header;
   await expect(header).toBeDisplayed();
+=======
+Then('I should see the header', async function () {
+    const header = await HomePage.header;
+    const isDisplayed = await header.isDisplayed();
+    assert.isTrue(isDisplayed); 
+>>>>>>> af8484d (Chai integration)
 });
 
 When("I click the categories link", async function () {
@@ -24,10 +39,19 @@ Then("I should see the dropdown menu", async function () {
   await expect(dropDownMenu).toBeDisplayed();
 });
 
+<<<<<<< HEAD
 Then("I should see the {string} link", async function (linkText) {
   const signInLink = await HomePage.signIn;
   await expect(signInLink).toBeDisplayed();
   await expect(signInLink).toHaveText(linkText);
+=======
+Then('I should see the {string} link', async function (linkText) {
+    const signInLink = await HomePage.signIn;
+    const isDisplayed = await signInLink.isDisplayed();
+    isDisplayed.should.be.true;
+    const text = await signInLink.getText();
+    expect(text).to.equal(linkText);
+>>>>>>> af8484d (Chai integration)
 });
 
 When("I click the {string} link", async function (linkText) {
