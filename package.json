@@ -15,10 +15,11 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "wdio run wdio.conf.js chrome",
-    "test:firefox": "wdio run wdio.conf.js firefox",
-    "test:edge": "wdio run wdio.conf.js microsoftedge",
-    "wdio": "wdio run wdio.conf.js"
+    "test:chrome": "wdio run wdio.mocha.conf.js chrome",
+    "test:firefox": "wdio run wdio.mocha.conf.js firefox",
+    "test:edge": "wdio run wdio.mocha.conf.js microsoftedge",
+    "test:mocha": "wdio run wdio.mocha.conf.js",
+    "test:cucumber": "wdio run wdio.cucumber.conf.js"
   },
   "devDependencies": {
     "@wdio/cli": "^9.12.1",
@@ -26,7 +27,9 @@
     "@wdio/spec-reporter": "^9.11.0"
   },
   "dependencies": {
+    "@wdio/cucumber-framework": "^9.12.1",
     "@wdio/mocha-framework": "^9.12.2",
+    "@wdio/spec-reporter": "^9.11.0",
     "chai": "^5.2.0"
   }
 }
