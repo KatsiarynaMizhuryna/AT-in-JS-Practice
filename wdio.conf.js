@@ -8,6 +8,11 @@ exports.config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
+    mochaOpts: {
+        retries: 2, 
+        timeout: 60000,
+        ui: 'bdd'
+      },
     //
     // ==================
     // Specify Test Files
@@ -24,7 +29,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './src/features/app.feature'
+        './src/specs/**/*.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -46,16 +51,26 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 2,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local browser web tests
-        browserName: browserName // or "firefox", "microsoftedge", "safari"
-    }],
+    capabilities: [
+        {
+          browserName: browserName,
+          'goog:chromeOptions': browserName === 'chrome' ? {
+            args: ['--headless', '--disable-gpu', '--window-size=1920x1080']
+          } : {},
+          'moz:firefoxOptions': browserName === 'firefox' ? {
+            args: ['--headless']
+          } : {},
+          'ms:edgeOptions': browserName === 'microsoftedge' ? {
+            args: ['--headless']
+          } : {},
+        }
+      ],
 
     //
     // ===================
@@ -112,7 +127,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'cucumber',
+    framework: 'mocha',
     
     //
     // The number of times to retry the entire specfile when it fails as a whole

@@ -15,12 +15,18 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "test:chrome": "wdio run wdio.conf.js chrome",
+    "test:firefox": "wdio run wdio.conf.js firefox",
+    "test:edge": "wdio run wdio.conf.js microsoftedge",
     "wdio": "wdio run wdio.conf.js"
   },
   "devDependencies": {
     "@wdio/cli": "^9.12.1",
-    "@wdio/cucumber-framework": "^9.12.1",
     "@wdio/local-runner": "^9.12.1",
     "@wdio/spec-reporter": "^9.11.0"
+  },
+  "dependencies": {
+    "@wdio/mocha-framework": "^9.12.2",
+    "chai": "^5.2.0"
   }
 }
