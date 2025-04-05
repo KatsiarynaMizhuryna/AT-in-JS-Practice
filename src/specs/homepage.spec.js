@@ -37,4 +37,8 @@ describe('Homepage Tests', () => {
         expect(await HomePage.languageButton.getText()).to.equal('DE');
     });
 
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 9f7f7d0 (Code refactor)

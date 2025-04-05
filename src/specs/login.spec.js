@@ -37,4 +37,8 @@ describe('Login Page Tests', () => {
         expect(await LoginPage.loginError.getText()).to.equal('Invalid email or password');
     });
 
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 9f7f7d0 (Code refactor)
