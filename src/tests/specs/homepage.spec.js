@@ -1,4 +1,4 @@
-const HomePage = require("../pageobjects/home.page");
+const HomePage = require("../../business/pages/home.page");
 const { expect } = require("chai");
 
 describe("Homepage Tests", () => {

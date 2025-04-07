@@ -1,4 +1,4 @@
-const Page = require("./page");
+const Page = require("../../core/pages/base.page");
 
 class LoginPage extends Page {
     
