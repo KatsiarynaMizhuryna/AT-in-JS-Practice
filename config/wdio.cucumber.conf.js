@@ -1,6 +1,6 @@
 const browserName = process.argv[4] || "chrome";
 
-exports.config = {
+export const config = {
   //
   // ====================
   // Runner Configuration
