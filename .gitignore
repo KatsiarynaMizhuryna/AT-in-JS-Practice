@@ -1,1 +1,9 @@
 node_modules
+
+# Reports
+/reports/
+*.html
+*.json
+*.xml
+/test-results/
+/coverage/

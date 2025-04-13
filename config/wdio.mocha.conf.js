@@ -1,12 +1,22 @@
 const browserName = process.argv[4] || "chrome";
+import HtmlReporter from "wdio-html-nice-reporter";
 
-exports.config = {
+export const config = {
   //
   // ====================
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
   runner: "local",
+  mochaOpts: {
+    retries: 2,
+    timeout: 60000,
+    ui: "bdd",
+    reporterOptions: {
+      colors: true,
+      inlineDiffs: true,
+    },
+  },
   //
   // ==================
   // Specify Test Files
@@ -22,7 +32,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./src/features/app.feature"],
+  specs: ["../src/tests/specs/**/*.spec.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -43,7 +53,7 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 2,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -51,8 +61,25 @@ exports.config = {
   //
   capabilities: [
     {
-      // capabilities for local browser web tests
-      browserName: browserName, // or "firefox", "microsoftedge", "safari"
+      browserName: browserName,
+      "goog:chromeOptions":
+        browserName === "chrome"
+          ? {
+              args: ["--headless", "--disable-gpu", "--window-size=1920x1080"],
+            }
+          : {},
+      "moz:firefoxOptions":
+        browserName === "firefox"
+          ? {
+              args: ["--headless"],
+            }
+          : {},
+      "ms:edgeOptions":
+        browserName === "microsoftedge"
+          ? {
+              args: ["--headless"],
+            }
+          : {},
     },
   ],
 
@@ -111,7 +138,7 @@ exports.config = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "cucumber",
+  framework: "mocha",
 
   //
   // The number of times to retry the entire specfile when it fails as a whole
@@ -126,36 +153,36 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  // reporters: ['dot'],
+  reporters: [
+    [
+      "spec",
+      {
+        showPreface: false,
+        showPassed: true,
+        showFailed: true,
+        showSkipped: true,
+        showStandardError: true,
+        symbols: {
+          passed: "[PASS]",
+          failed: "[FAIL]",
+          skipped: "[SKIP]",
+        },
+      },
+    ],
+    [
+      HtmlReporter,
+      {
+        debug: false,
+        outputDir: "./reports/html/mocha",
+        filename: "report.html",
+        reportTitle: "Mocha Test Report",
+        showInBrowser: false,
+        useOnAfterCommandForScreenshot: false,
+      },
+    ],
+  ],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
-  cucumberOpts: {
-    // <string[]> (file/dir) require files before executing features
-    require: ["./src/step-definitions/steps.js"],
-    // <boolean> show full backtrace for errors
-    backtrace: false,
-    // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-    requireModule: [],
-    // <boolean> invoke formatters without executing steps
-    dryRun: false,
-    // <boolean> abort the run on first failure
-    failFast: false,
-    // <string[]> Only execute the scenarios with name matching the expression (repeatable).
-    name: [],
-    // <boolean> hide step definition snippets for pending steps
-    snippets: true,
-    // <boolean> hide source uris
-    source: true,
-    // <boolean> fail if there are any undefined or pending steps
-    strict: false,
-    // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: "",
-    // <number> timeout for step definitions
-    timeout: 60000,
-    // <boolean> Enable this config to treat undefined definitions as warnings.
-    ignoreUndefinedDefinitions: false,
-    format: ["pretty"],
-  },
 
   //
   // =====
