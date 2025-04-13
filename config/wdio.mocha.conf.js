@@ -1,4 +1,5 @@
 const browserName = process.argv[4] || "chrome";
+import HtmlReporter from "wdio-html-nice-reporter";
 
 export const config = {
   //
@@ -11,6 +12,10 @@ export const config = {
     retries: 2,
     timeout: 60000,
     ui: "bdd",
+    reporterOptions: {
+      colors: true,
+      inlineDiffs: true,
+    },
   },
   //
   // ==================
@@ -148,7 +153,34 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  // reporters: ['dot'],
+  reporters: [
+    [
+      "spec",
+      {
+        showPreface: false,
+        showPassed: true,
+        showFailed: true,
+        showSkipped: true,
+        showStandardError: true,
+        symbols: {
+          passed: "[PASS]",
+          failed: "[FAIL]",
+          skipped: "[SKIP]",
+        },
+      },
+    ],
+    [
+      HtmlReporter,
+      {
+        debug: false,
+        outputDir: "./reports/html/mocha",
+        filename: "report.html",
+        reportTitle: "Mocha Test Report",
+        showInBrowser: false,
+        useOnAfterCommandForScreenshot: false,
+      },
+    ],
+  ],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
 

@@ -1,4 +1,4 @@
-import homePage from "../../business/pages/home.page";
+import homePage from "../../business/pages/home.page.js";
 import { expect } from "chai";
 
 describe("Homepage Tests", () => {
