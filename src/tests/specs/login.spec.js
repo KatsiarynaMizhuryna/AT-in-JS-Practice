@@ -1,4 +1,4 @@
-import loginPage from "../../business/pages/login.page";
+import loginPage from "../../business/pages/login.page.js";
 import { expect } from "chai";
 
 describe("Login Page Tests", () => {

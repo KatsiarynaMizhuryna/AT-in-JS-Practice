@@ -1,4 +1,4 @@
-import Page from "../../core/pages/base.page";
+import Page from "../../core/pages/base.page.js";
 
 class LoginPage extends Page {
   get emailInput() {
