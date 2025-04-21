@@ -1,4 +1,4 @@
-const LoginPage = require("../pageobjects/login.page");
+const LoginPage = require("../../business/pages/login.page");
 const { expect } = require("chai");
 
 describe("Login Page Tests", () => {
