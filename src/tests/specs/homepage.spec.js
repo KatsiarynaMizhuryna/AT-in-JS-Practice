@@ -1,27 +1,27 @@
-const HomePage = require("../../business/pages/home.page");
-const { expect } = require("chai");
+import homePage from "../../business/pages/home.page";
+import { expect } from "chai";
 
 describe("Homepage Tests", () => {
   beforeEach(async () => {
-    await HomePage.open();
+    await homePage.open();
   });
 
   it("should display the header", async () => {
-    const header = await HomePage.header;
+    const header = await homePage.header;
     expect(await header.isDisplayed()).to.be.true;
   });
 
   it("should show the dropdown menu when clicking the categories link", async () => {
-    await HomePage.categoriesLink.click();
-    expect(await HomePage.dropDownMenu.isDisplayed()).to.be.true;
+    await homePage.categoriesLink.click();
+    expect(await homePage.dropDownMenu.isDisplayed()).to.be.true;
   });
 
   it("should display the sign-in link", async () => {
-    expect(await HomePage.signIn.isDisplayed()).to.be.true;
+    expect(await homePage.signIn.isDisplayed()).to.be.true;
   });
 
   it("should navigate to login page when clicking the sign-in link", async () => {
-    await HomePage.signIn.click();
+    await homePage.signIn.click();
     await browser.waitUntil(async () =>
       (await browser.getUrl()).includes("/auth/login")
     );
@@ -29,12 +29,12 @@ describe("Homepage Tests", () => {
   });
 
   it("should display the language button", async () => {
-    expect(await HomePage.languageButton.isDisplayed()).to.be.true;
+    expect(await homePage.languageButton.isDisplayed()).to.be.true;
   });
 
   it("should switch to DE language", async () => {
-    await HomePage.clicklanguageButton();
-    await HomePage.clicklanguageDe();
-    expect(await HomePage.languageButton.getText()).to.equal("DE");
+    await homePage.clicklanguageButton();
+    await homePage.clicklanguageDe();
+    expect(await homePage.languageButton.getText()).to.equal("DE");
   });
 });
