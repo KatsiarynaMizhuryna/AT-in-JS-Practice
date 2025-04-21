@@ -1,10 +1,10 @@
-import HtmlReporter from "wdio-html-nice-reporter";
+import HtmlReporter from 'wdio-html-nice-reporter';
 
 exports.htmlReporter = new HtmlReporter({
   debug: false,
-  outputDir: "./reports/html",
-  filename: "report.html",
-  reportTitle: "Test Report",
+  outputDir: './reports/html',
+  filename: 'report.html',
+  reportTitle: 'Test Report',
   showInBrowser: false,
   collapseTests: false,
   useOnAfterCommandForScreenshot: false,
@@ -17,8 +17,8 @@ exports.specReporter = {
   showSkipped: true,
   showStandardError: true,
   symbols: {
-    passed: "[PASS]",
-    failed: "[FAIL]",
-    skipped: "[SKIP]",
+    passed: '[PASS]',
+    failed: '[FAIL]',
+    skipped: '[SKIP]',
   },
 };

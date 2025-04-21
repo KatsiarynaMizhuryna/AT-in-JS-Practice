@@ -1,4 +1,4 @@
-import Page from "../../core/pages/base.page.js";
+import Page from '../../core/pages/base.page.js';
 
 class LoginPage extends Page {
   get emailInput() {
@@ -51,7 +51,7 @@ class LoginPage extends Page {
   }
 
   async open() {
-    await super.open("/auth/login");
+    await super.open('/auth/login');
   }
 }
 

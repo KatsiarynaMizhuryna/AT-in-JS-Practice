@@ -15,6 +15,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint:fix": "eslint . --fix",
     "test:chrome": "wdio run wdio.mocha.conf.js chrome",
     "test:firefox": "wdio run wdio.mocha.conf.js firefox",
     "test:edge": "wdio run wdio.mocha.conf.js microsoftedge",
@@ -23,6 +27,7 @@
     "test:axios": "mocha src/tests/api-tests/bookingAPI.test.js"
   },
   "devDependencies": {
+    "@eslint/js": "^9.25.0",
     "@wdio/cli": "^9.12.1",
     "@wdio/cucumber-framework": "^9.12.1",
     "@wdio/local-runner": "^9.12.1",
@@ -30,7 +35,13 @@
     "@wdio/spec-reporter": "^9.12.3",
     "axios": "^1.8.4",
     "chai": "^5.2.0",
+    "eslint": "^9.25.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
     "mocha": "^11.1.0",
+    "prettier": "^3.5.3",
     "wdio-html-nice-reporter": "^8.1.7",
     "wdio-html-reporter": "^1.0.2"
   }
