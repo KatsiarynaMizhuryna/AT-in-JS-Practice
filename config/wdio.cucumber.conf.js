@@ -52,8 +52,10 @@ export const config = {
   //
   capabilities: [
     {
-      // capabilities for local browser web tests
-      browserName: browserName, // or "firefox", "microsoftedge", "safari"
+      browserName: browserName,
+      'goog:chromeOptions': {
+        args: ['--headless', '--no-sandbox'],
+      },
     },
   ],
 
