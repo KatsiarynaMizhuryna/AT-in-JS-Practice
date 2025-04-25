@@ -1,4 +1,4 @@
-import { browser } from "@wdio/globals";
+import { browser } from '@wdio/globals';
 
 export default class Page {
   /**
@@ -7,6 +7,6 @@ export default class Page {
    */
 
   async open() {
-    await browser.url("");
+    await browser.url('');
   }
 }

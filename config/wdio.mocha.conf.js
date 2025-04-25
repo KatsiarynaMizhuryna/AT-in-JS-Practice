@@ -1,5 +1,5 @@
-const browserName = process.argv[4] || "chrome";
-import HtmlReporter from "wdio-html-nice-reporter";
+const browserName = process.argv[4] || 'chrome';
+import HtmlReporter from 'wdio-html-nice-reporter';
 
 export const config = {
   //
@@ -7,11 +7,11 @@ export const config = {
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
-  runner: "local",
+  runner: 'local',
   mochaOpts: {
     retries: 2,
     timeout: 60000,
-    ui: "bdd",
+    ui: 'bdd',
     reporterOptions: {
       colors: true,
       inlineDiffs: true,
@@ -32,7 +32,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["../src/tests/specs/**/*.spec.js"],
+  specs: ['../src/tests/specs/**/*.spec.js'],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -62,22 +62,22 @@ export const config = {
   capabilities: [
     {
       browserName: browserName,
-      "goog:chromeOptions":
-        browserName === "chrome"
+      'goog:chromeOptions':
+        browserName === 'chrome'
           ? {
-              args: ["--headless", "--disable-gpu", "--window-size=1920x1080"],
+              args: ['--headless', '--disable-gpu', '--window-size=1920x1080'],
             }
           : {},
-      "moz:firefoxOptions":
-        browserName === "firefox"
+      'moz:firefoxOptions':
+        browserName === 'firefox'
           ? {
-              args: ["--headless"],
+              args: ['--headless'],
             }
           : {},
-      "ms:edgeOptions":
-        browserName === "microsoftedge"
+      'ms:edgeOptions':
+        browserName === 'microsoftedge'
           ? {
-              args: ["--headless"],
+              args: ['--headless'],
             }
           : {},
     },
@@ -90,7 +90,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: 'info',
   //
   // Set specific log levels per logger
   // loggers:
@@ -114,7 +114,7 @@ export const config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "https://practicesoftwaretesting.com/",
+  baseUrl: 'https://practicesoftwaretesting.com/',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -138,7 +138,7 @@ export const config = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "mocha",
+  framework: 'mocha',
 
   //
   // The number of times to retry the entire specfile when it fails as a whole
@@ -155,7 +155,7 @@ export const config = {
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: [
     [
-      "spec",
+      'spec',
       {
         showPreface: false,
         showPassed: true,
@@ -163,9 +163,9 @@ export const config = {
         showSkipped: true,
         showStandardError: true,
         symbols: {
-          passed: "[PASS]",
-          failed: "[FAIL]",
-          skipped: "[SKIP]",
+          passed: '[PASS]',
+          failed: '[FAIL]',
+          skipped: '[SKIP]',
         },
       },
     ],
@@ -173,9 +173,9 @@ export const config = {
       HtmlReporter,
       {
         debug: false,
-        outputDir: "./reports/html/mocha",
-        filename: "report.html",
-        reportTitle: "Mocha Test Report",
+        outputDir: './reports/html/mocha',
+        filename: 'report.html',
+        reportTitle: 'Mocha Test Report',
         showInBrowser: false,
         useOnAfterCommandForScreenshot: false,
       },

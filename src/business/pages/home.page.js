@@ -1,8 +1,8 @@
-import Page from "../../core/pages/base.page.js";
+import Page from '../../core/pages/base.page.js';
 
 class HomePage extends Page {
   get header() {
-    return $("app-header");
+    return $('app-header');
   }
 
   get powerTools() {
@@ -14,7 +14,7 @@ class HomePage extends Page {
   }
 
   get dropDownMenu() {
-    return $("ul.dropdown-menu.show");
+    return $('ul.dropdown-menu.show');
   }
 
   get signIn() {
