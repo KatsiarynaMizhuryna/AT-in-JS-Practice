@@ -1,0 +1,53 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+      - name: Install dependencies
+        run: |
+          git clone https://github.com/KatsiarynaMizhuryna/AT-in-JS-Practice.git
+          cd AT-in-JS-Practice
+          npm ci
+
+      - name: Run UI tests with Cucumber
+        continue-on-error: true
+        run: |
+          cd AT-in-JS-Practice
+          npm run test:cucumber
+      - name: Add artifact with report
+        uses: actions/upload-artifact@v4
+        with:
+          name: master-report.html
+          path: ${{github.workspace}}/reports/html-reports/
+
+  api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          git clone https://github.com/KatsiarynaMizhuryna/AT-in-JS-Practice.git
+          cd AT-in-JS-Practice
+          npm ci
+
+      - name: Run API tests
+        env:
+          HEADLESS: "true"
+        run: |
+          cd AT-in-JS-Practice
+          npm run test:axios
