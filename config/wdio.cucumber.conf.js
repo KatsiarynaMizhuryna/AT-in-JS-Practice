@@ -1,4 +1,5 @@
 import HtmlReporter from 'wdio-html-nice-reporter';
+import { existsSync, mkdirSync } from 'fs';
 
 const browserName = process.argv[4] || 'chrome';
 
@@ -79,5 +80,19 @@ export const config = {
       },
     },
     format: ['pretty'],
+  },
+  afterTest: async (test, { error }) => {
+    if (error) {
+      const fileName = `${test.title}.png`;
+      const dirPath = './screenshots/';
+
+      if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, {
+          recursive: true,
+        });
+      }
+
+      await browser.saveScreenshot(dirPath + fileName);
+    }
   },
 };
