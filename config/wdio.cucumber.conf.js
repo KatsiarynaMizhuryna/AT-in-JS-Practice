@@ -82,17 +82,21 @@ export const config = {
     format: ['pretty'],
   },
   afterTest: async (test, { error }) => {
-    if (error) {
-      const fileName = `${test.title}.png`;
-      const dirPath = './screenshots/';
+    try {
+      if (error) {
+        const fileName = `${test.title}.png`;
+        const dirPath = './screenshots/';
 
-      if (!existsSync(dirPath)) {
-        mkdirSync(dirPath, {
-          recursive: true,
-        });
+        if (!existsSync(dirPath)) {
+          mkdirSync(dirPath, {
+            recursive: true,
+          });
+        }
+
+        await browser.saveScreenshot(dirPath + fileName);
       }
-
-      await browser.saveScreenshot(dirPath + fileName);
+    } catch (error) {
+      throw new Error(`${error.message}, ${error}`);
     }
   },
 };
