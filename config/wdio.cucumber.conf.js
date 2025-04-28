@@ -49,7 +49,7 @@ export const config = {
         outputDir: './reports/html/cucumber',
         filename: 'report.html',
         reportTitle: 'Cucumber Test Report',
-        showInBrowser: false,
+        showInBrowser: true,
         useOnAfterCommandForScreenshot: false,
       },
     ],
