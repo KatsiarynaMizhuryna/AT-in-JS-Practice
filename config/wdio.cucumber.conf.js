@@ -1,7 +1,8 @@
-import HtmlReporter from 'wdio-html-nice-reporter';
+import { ReportAggregator } from 'wdio-html-nice-reporter';
 import { existsSync, mkdirSync } from 'fs';
 
 const browserName = process.argv[4] || 'chrome';
+let reportAggregator;
 
 export const config = {
   runner: 'local',
@@ -42,14 +43,16 @@ export const config = {
         },
       },
     ],
+
     [
-      HtmlReporter,
+      'html-nice',
       {
-        debug: false,
-        outputDir: './reports/html/cucumber',
+        outputDir: './reports/html-reports/',
         filename: 'report.html',
-        reportTitle: 'Cucumber Test Report',
+        reportTitle: 'Test Report Title',
+        linkScreenshots: true,
         showInBrowser: true,
+        collapseTests: false,
         useOnAfterCommandForScreenshot: false,
       },
     ],
@@ -98,5 +101,20 @@ export const config = {
     } catch (error) {
       throw new Error(`${error.message}, ${error}`);
     }
+  },
+  onPrepare: async function (config, capabilities) {
+    reportAggregator = new ReportAggregator({
+      outputDir: './reports/html-reports/',
+      filename: 'master-report.html',
+      reportTitle: 'Master Report',
+      browserName: capabilities.browserName,
+      collapseTests: true,
+    });
+    await reportAggregator.clean();
+  },
+
+  onComplete: async function () {
+    console.log('COMPLETED');
+    await reportAggregator.createReport();
   },
 };
