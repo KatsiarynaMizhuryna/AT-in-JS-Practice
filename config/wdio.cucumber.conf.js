@@ -18,7 +18,7 @@ export const config = {
     },
   ],
 
-  logLevel: 'error',
+  logLevel: 'info',
   baseUrl: 'https://practicesoftwaretesting.com/',
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
