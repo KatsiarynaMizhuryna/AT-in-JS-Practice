@@ -84,22 +84,18 @@ export const config = {
     },
     format: ['pretty'],
   },
-  afterTest: async (test, { error }) => {
-    try {
-      if (error) {
-        const fileName = `${test.title}.png`;
-        const dirPath = './screenshots/';
+  afterScenario: async (_, result) => {
+    if (result.error) {
+      const fileName = `${new Date().getTime()}.png`;
+      const dirPath = './reports/html-reports/';
 
-        if (!existsSync(dirPath)) {
-          mkdirSync(dirPath, {
-            recursive: true,
-          });
-        }
-
-        await browser.saveScreenshot(dirPath + fileName);
+      if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, {
+          recursive: true,
+        });
       }
-    } catch (error) {
-      throw new Error(`${error.message}, ${error}`);
+
+      await browser.saveScreenshot(dirPath + fileName);
     }
   },
   onPrepare: async function (config, capabilities) {
@@ -114,7 +110,6 @@ export const config = {
   },
 
   onComplete: async function () {
-    console.log('COMPLETED');
     await reportAggregator.createReport();
   },
 };
