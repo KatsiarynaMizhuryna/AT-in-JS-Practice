@@ -11,9 +11,6 @@ export const config = {
   capabilities: [
     {
       browserName: browserName,
-      'goog:chromeOptions': {
-        args: ['--headless', '--no-sandbox'],
-      },
     },
   ],
 
@@ -64,7 +61,6 @@ export const config = {
     snippets: true,
     source: true,
     strict: false,
-    tagExpression: '',
     timeout: 60000,
     ignoreUndefinedDefinitions: false,
     formatOptions: {
