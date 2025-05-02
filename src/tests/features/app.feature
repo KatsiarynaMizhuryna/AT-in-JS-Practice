@@ -1,11 +1,14 @@
+@ui @smoke
 Feature: App functionality
 
+  @homepage
   Scenario: Open Home Page
     Given I am on the homepage
     Then I should see the header
     When I click the categories link
     Then I should see the dropdown menu
 
+  @category
   Scenario: Open Power Tools Category page
     Given I am on the homepage
     Then I should see the header
@@ -14,36 +17,42 @@ Feature: App functionality
     When I click power tools link
     Then I should be redirected to the power tools category page
 
+  @login
   Scenario: Open Login Page
     Given I am on the homepage
     Then I should see the "Sign in" link
     When I click the "Sign in" link
     Then I should be redirected to the Login Page
 
+  @login @validation
   Scenario: Test Login form with empty credentials
     Given I am on the Login page
     Then I should see the email and password inputs
     When I click the Login button
     Then I expect to see error messages "Email is required" and "Password is required"
 
+  @login @validation
   Scenario: Invalid email format
     Given I am on the Login page
     When I enter an invalid email "invalidemail.com"
     When I click the Login button
     Then I should see the error message "Email format is invalid" for email
 
+  @login
   Scenario: Login with non-registered user
     Given I am on the Login page
     When I enter email "nonexistent@example.com" and password "WrongPassword123"
     When I click the Login button
     Then I should see the login error message "Invalid email or password"
 
+  @login @registration
   Scenario: Register user
     Given I am on the Login page
     Then I should see "Register your account" link
     When I click the register link
     Then I should be redirected to the Register Page
 
+  @translation
   Scenario: Translation
     Given I am on the homepage
     Then I should see the language button

@@ -24,6 +24,13 @@
     "test:edge": "wdio run wdio.mocha.conf.js microsoftedge",
     "test:mocha": "wdio run config/wdio.mocha.conf.js",
     "test:cucumber": "wdio run config/wdio.cucumber.conf.js",
+    "test:cucumber:smoke": "wdio run config/wdio.cucumber.conf.js chrome --tags=@smoke",
+    "test:cucumber:login": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@login",
+    "test:cucumber:homepage": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@homepage",
+    "test:cucumber:category": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@category",
+    "test:cucumber:validation": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@login and @validation",
+    "test:cucumber:registration": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@login and @registration",
+    "test:cucumber:translation": "wdio run config/wdio.cucumber.conf.js chrome --cucumberOpts.tagExpression=@translation",
     "test:axios": "mocha src/tests/api-tests/bookingAPI.test.js"
   },
   "devDependencies": {
