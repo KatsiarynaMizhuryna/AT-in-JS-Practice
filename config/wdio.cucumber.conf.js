@@ -13,6 +13,9 @@ export const config = {
   capabilities: [
     {
       browserName: browserName,
+      'goog:chromeOptions': {
+        args: ['--headless', '--no-sandbox', '--window-size=1920,1080'],
+      },
     },
   ],
 
